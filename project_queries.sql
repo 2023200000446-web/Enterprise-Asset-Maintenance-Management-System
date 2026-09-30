@@ -160,70 +160,70 @@ INSERT INTO Asset_Assignment VALUES
     
     
     
--- SELECT * FROM Department;
--- SELECT * FROM Role;
--- SELECT * FROM Asset_Category;
--- SELECT * FROM Vendor;
--- SELECT * FROM Employee;
--- SELECT * FROM Asset;
--- SELECT * FROM Maintenance_Request;
--- SELECT * FROM Maintenance;
--- SELECT * FROM Asset_Assignment;
+ SELECT * FROM Department;
+SELECT * FROM Role;
+SELECT * FROM Asset_Category;
+SELECT * FROM Vendor;
+SELECT * FROM Employee;
+SELECT * FROM Asset;
+SELECT * FROM Maintenance_Request;
+SELECT * FROM Maintenance;
+SELECT * FROM Asset_Assignment;
 
--- AND
--- SELECT *
--- FROM Employee
--- WHERE Department_ID = 1
--- AND Role_ID = 5;
+AND
+SELECT *
+FROM Employee
+WHERE Department_ID = 1
+AND Role_ID = 5;
 
--- -- OR Operator
--- SELECT Asset_ID,
---        Asset_Name,
---        Asset_Status
--- FROM Asset
--- WHERE Asset_Status='Assigned'
--- OR Asset_Status='Under Maintenance';
+-- OR Operator
+SELECT Asset_ID,
+       Asset_Name,
+       Asset_Status
+FROM Asset
+WHERE Asset_Status='Assigned'
+OR Asset_Status='Under Maintenance';
 
--- NOT Operator
--- SELECT Request_ID,
---        Issue_Description,
---        Request_Status
--- FROM Maintenance_Request
--- WHERE NOT Request_Status='Pending';
+NOT Operator
+SELECT Request_ID,
+       Issue_Description,
+       Request_Status
+FROM Maintenance_Request
+WHERE NOT Request_Status='Pending';
 
--- UNION
+UNION
 
--- SELECT Employee_ID
--- FROM Asset_Assignment
--- UNION
--- SELECT Employee_ID
--- FROM Maintenance_Request;
+SELECT Employee_ID
+FROM Asset_Assignment
+UNION
+SELECT Employee_ID
+FROM Maintenance_Request;
 
--- UNION ALL
+UNION ALL
 
--- SELECT Employee_ID
--- FROM Asset_Assignment
--- UNION ALL
--- SELECT Employee_ID
--- FROM Maintenance_Request;
+SELECT Employee_ID
+FROM Asset_Assignment
+UNION ALL
+SELECT Employee_ID
+FROM Maintenance_Request;
 
--- INTERSECT
+INTERSECT
 
--- SELECT Employee_ID
--- FROM Asset_Assignment
--- INTERSECT
--- SELECT Employee_ID
--- FROM Maintenance_Request;
+SELECT Employee_ID
+FROM Asset_Assignment
+INTERSECT
+SELECT Employee_ID
+FROM Maintenance_Request;
 
--- MINUS
+MINUS
 
--- SELECT Employee_ID
--- FROM Asset_Assignment
--- MINUS
--- SELECT Employee_ID
--- FROM Maintenance_Request;
+SELECT Employee_ID
+FROM Asset_Assignment
+MINUS
+SELECT Employee_ID
+FROM Maintenance_Request;
 
---Join
+Join
 
  SELECT E.Employee_ID,
         E.First_Name,
@@ -235,165 +235,165 @@ JOIN Asset_Assignment AA
  JOIN Asset A
  ON AA.Asset_ID = A.Asset_ID;
 
---Group By
+Group By
 
--- SELECT Department_ID,
---        COUNT(*) AS Total_Employees
--- FROM Employee
--- GROUP BY Department_ID;
+SELECT Department_ID,
+       COUNT(*) AS Total_Employees
+FROM Employee
+GROUP BY Department_ID;
 
---Having
+Having
 
--- SELECT Department_ID,
---        COUNT(*) AS Total_Employees
--- FROM Employee
--- GROUP BY Department_ID
--- HAVING COUNT(*) > 1;
+SELECT Department_ID,
+       COUNT(*) AS Total_Employees
+FROM Employee
+GROUP BY Department_ID
+HAVING COUNT(*) > 1;
 
---In
+In
 
--- SELECT Employee_ID,
---        First_Name,
---        Last_Name,
---        Department_ID
--- FROM Employee
--- WHERE Department_ID IN (
---     SELECT Department_ID
---     FROM Department
---     WHERE Department_Name IN ('IT', 'Human Resources')
--- );
+SELECT Employee_ID,
+       First_Name,
+       Last_Name,
+       Department_ID
+FROM Employee
+WHERE Department_ID IN (
+    SELECT Department_ID
+    FROM Department
+    WHERE Department_Name IN ('IT', 'Human Resources')
+);
 
---Not In
+Not In
 
--- SELECT Employee_ID,
---        First_Name,
---        Last_Name,
---        Department_ID
--- FROM Employee
--- WHERE Department_ID NOT IN (
---     SELECT Department_ID
---     FROM Department
---     WHERE Department_Name IN ('IT', 'Human Resources')
--- );
+SELECT Employee_ID,
+       First_Name,
+       Last_Name,
+       Department_ID
+FROM Employee
+WHERE Department_ID NOT IN (
+    SELECT Department_ID
+    FROM Department
+    WHERE Department_Name IN ('IT', 'Human Resources')
+);
 
---Any
+Any
 
--- SELECT Asset_ID,
---        Asset_Name,
---        Purchase_Cost
--- FROM Asset
--- WHERE Purchase_Cost > ANY (
---     SELECT Purchase_Cost
---     FROM Asset
---     WHERE Vendor_ID = 1
--- );
+SELECT Asset_ID,
+       Asset_Name,
+       Purchase_Cost
+FROM Asset
+WHERE Purchase_Cost > ANY (
+    SELECT Purchase_Cost
+    FROM Asset
+    WHERE Vendor_ID = 1
+);
 
---Exists 
+Exists 
 
--- SELECT E.Employee_ID,
---        E.First_Name,
---        E.Last_Name
--- FROM Employee E
--- WHERE EXISTS (
---     SELECT 1
---     FROM Asset_Assignment AA
---     WHERE AA.Employee_ID = E.Employee_ID
--- );
+SELECT E.Employee_ID,
+       E.First_Name,
+       E.Last_Name
+FROM Employee E
+WHERE EXISTS (
+    SELECT 1
+    FROM Asset_Assignment AA
+    WHERE AA.Employee_ID = E.Employee_ID
+);
 
---NOT EXISTS
+NOT EXISTS
 
--- SELECT E.Employee_ID,
---        E.First_Name,
---        E.Last_Name
--- FROM Employee E
--- WHERE NOT EXISTS (
---     SELECT 1
---     FROM Asset_Assignment AA
---     WHERE AA.Employee_ID = E.Employee_ID
--- );
---INNER JOIN
+SELECT E.Employee_ID,
+       E.First_Name,
+       E.Last_Name
+FROM Employee E
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Asset_Assignment AA
+    WHERE AA.Employee_ID = E.Employee_ID
+);
+INNER JOIN
 
--- SELECT E.Employee_ID,
---        E.First_Name,
---        E.Last_Name,
---        A.Asset_Name
--- FROM Employee E
--- JOIN Asset_Assignment AA
--- ON E.Employee_ID = AA.Employee_ID
--- JOIN Asset A
--- ON AA.Asset_ID = A.Asset_ID;
+SELECT E.Employee_ID,
+       E.First_Name,
+       E.Last_Name,
+       A.Asset_Name
+FROM Employee E
+JOIN Asset_Assignment AA
+ON E.Employee_ID = AA.Employee_ID
+JOIN Asset A
+ON AA.Asset_ID = A.Asset_ID;
 
--- NATURAL JOIN
+NATURAL JOIN
 
--- SELECT Employee_ID,
---        First_Name,
---        Last_Name,
---        Assignment_ID,
---        Asset_ID,
---        Status
--- FROM Employee
--- NATURAL JOIN Asset_Assignment;
+SELECT Employee_ID,
+       First_Name,
+       Last_Name,
+       Assignment_ID,
+       Asset_ID,
+       Status
+FROM Employee
+NATURAL JOIN Asset_Assignment;
 
--- LEFT JOIN
+LEFT JOIN
 
--- SELECT E.Employee_ID,
---        E.First_Name,
---        E.Last_Name,
---        A.Asset_Name
--- FROM Employee E
--- LEFT JOIN Asset_Assignment AA
--- ON E.Employee_ID = AA.Employee_ID
--- LEFT JOIN Asset A
--- ON AA.Asset_ID = A.Asset_ID;
+SELECT E.Employee_ID,
+       E.First_Name,
+       E.Last_Name,
+       A.Asset_Name
+FROM Employee E
+LEFT JOIN Asset_Assignment AA
+ON E.Employee_ID = AA.Employee_ID
+LEFT JOIN Asset A
+ON AA.Asset_ID = A.Asset_ID;
 
--- RIGHT JOIN
+RIGHT JOIN
 
--- SELECT E.Employee_ID,
---        E.First_Name,
---        E.Last_Name,
---        A.Asset_ID,
---        A.Asset_Name
--- FROM Employee E
--- RIGHT JOIN Asset_Assignment AA
--- ON E.Employee_ID = AA.Employee_ID
--- RIGHT JOIN Asset A
--- ON AA.Asset_ID = A.Asset_ID;
+SELECT E.Employee_ID,
+       E.First_Name,
+       E.Last_Name,
+       A.Asset_ID,
+       A.Asset_Name
+FROM Employee E
+RIGHT JOIN Asset_Assignment AA
+ON E.Employee_ID = AA.Employee_ID
+RIGHT JOIN Asset A
+ON AA.Asset_ID = A.Asset_ID;
 
---Count 
+Count 
 
---SELECT COUNT(*) AS Total_Employees
---FROM Employee;
+SELECT COUNT(*) AS Total_Employees
+FROM Employee;
 
---Sum 
+Sum 
 
---SELECT SUM(Purchase_Cost) AS Total_Purchase_Cost
---FROM Asset;
+SELECT SUM(Purchase_Cost) AS Total_Purchase_Cost
+FROM Asset;
 
---Avg 
+Avg 
 
---SELECT AVG(Purchase_Cost) AS Average_Purchase_Cost
---FROM Asset;
+SELECT AVG(Purchase_Cost) AS Average_Purchase_Cost
+FROM Asset;
 
---Max 
+Max 
 
---SELECT MAX(Purchase_Cost) AS Highest_Purchase_Cost
---FROM Asset;
+SELECT MAX(Purchase_Cost) AS Highest_Purchase_Cost
+FROM Asset;
 
---Min
+Min
 
---SELECT MIN(Purchase_Cost) AS Lowest_Purchase_Cost
---FROM Asset;
+SELECT MIN(Purchase_Cost) AS Lowest_Purchase_Cost
+FROM Asset;
 
---Create View
+Create View
 
---CREATE VIEW Asset_View AS
---SELECT Asset_ID, Asset_Name, Purchase_Cost, Asset_Status
---FROM Asset;
+CREATE VIEW Asset_View AS
+SELECT Asset_ID, Asset_Name, Purchase_Cost, Asset_Status
+FROM Asset;
 
---Use View
+Use View
 
---SELECT *
---FROM Asset_View;
+SELECT *
+FROM Asset_View;
 
 
 
